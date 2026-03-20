@@ -24,7 +24,6 @@
   </div>
 </nav>
 
-<!-- LANDING -->
 <div class="page active" id="page-landing">
   <div class="hero">
     <div class="hero-glow"></div>
@@ -43,7 +42,6 @@
   </div>
 </div>
 
-<!-- AUTH PAGE -->
 <div class="page" id="page-auth">
   <div class="auth-page">
     <h2>Welcome to SkillNest 🪴</h2>
@@ -69,7 +67,6 @@
   </div>
 </div>
 
-<!-- CREATE / EDIT PROFILE -->
 <div class="page" id="page-create-profile">
   <div class="form-page">
     <div class="form-header">
@@ -122,15 +119,17 @@
     <div class="form-group">
       <label class="form-label">Skills I have 💜</label>
       <div class="skill-tags-input" id="have-tags-container" onclick="document.getElementById('have-input').focus()">
-        <input type="text" class="tag-input" id="have-input" placeholder="Type a skill, press Enter...">
+        <input type="text" class="tag-input" id="have-input" placeholder="Type a skill...">
       </div>
-      <p class="tag-hint">Examples: React, Guitar, Figma, Cricket, DSA, Video Editing...</p>
+      <button type="button" class="add-tag-btn" onclick="addTagManual('have-tags-container','have-input',haveTags,'')">+ Add skill</button>
+      <p class="tag-hint">Type a skill and tap Add — Examples: React, Guitar, Figma, DSA...</p>
     </div>
     <div class="form-group">
       <label class="form-label">Skills I want to learn 🌸</label>
       <div class="skill-tags-input" id="want-tags-container" onclick="document.getElementById('want-input').focus()">
-        <input type="text" class="tag-input" id="want-input" placeholder="Type a skill, press Enter...">
+        <input type="text" class="tag-input" id="want-input" placeholder="Type a skill...">
       </div>
+      <button type="button" class="add-tag-btn" onclick="addTagManual('want-tags-container','want-input',wantTags,'skill-tag-want')">+ Add skill</button>
       <p class="tag-hint">What have you always wanted to learn but never had someone to teach you?</p>
     </div>
     <div class="form-group">
@@ -146,7 +145,6 @@
   </div>
 </div>
 
-<!-- DISCOVER -->
 <div class="page" id="page-discover">
   <div class="discover-page">
     <div class="discover-header">
@@ -169,7 +167,6 @@
   </div>
 </div>
 
-<!-- CONNECTIONS -->
 <div class="page" id="page-connections">
   <div class="connections-page">
     <h2>Connections</h2>
@@ -177,19 +174,16 @@
   </div>
 </div>
 
-<!-- MY PROFILE -->
 <div class="page" id="page-profile-view">
   <div class="my-profile" id="my-profile-content"></div>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal" id="modal-content"></div>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<!-- JS files loaded at bottom so HTML loads first -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
 <script src="js/auth.js"></script>
@@ -197,6 +191,5 @@
 <script src="js/discover.js"></script>
 <script src="js/connections.js"></script>
 <script src="js/app.js"></script>
-
 </body>
 </html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillNest — Find Your People</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="showPage('landing')">Skill<span>Nest</span></div>
+  <div class="nav-tabs">
+    <button class="nav-tab" id="tab-home" onclick="showPage('landing')">Home</button>
+    <button class="nav-tab" id="tab-discover" onclick="showPage('discover')">Discover</button>
+    <button class="nav-tab" id="tab-connections" onclick="showPage('connections')">
+      Connections <span class="notif-dot" id="notif-dot" style="display:none"></span>
+    </button>
+    <button class="nav-tab" id="tab-profile" onclick="showPage('profile-view')">My Profile</button>
+  </div>
+  <div class="nav-user" id="nav-right">
+    <button class="nav-cta" onclick="showPage('auth')">Sign in</button>
+  </div>
+</nav>
+
+<!-- LANDING -->
+<div class="page active" id="page-landing">
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Made for tier 3 and 4 college students</div>
+    <h1>Find who knows<br><span class="c2">what you want</span><br><span class="c3">to learn.</span></h1>
+    <p class="hero-sub">Your college is full of hidden talent. SkillNest helps you discover the right people — quietly, without social pressure.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="showPage('auth')">Get started free</button>
+      <button class="btn-secondary" onclick="showPage('discover')">Browse skills →</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="stat-users">0</div><div class="stat-label">Students joined</div></div>
+      <div class="stat"><div class="stat-num" id="stat-skills">0</div><div class="stat-label">Skills listed</div></div>
+      <div class="stat"><div class="stat-num" id="stat-connects">0</div><div class="stat-label">Connections made</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH PAGE -->
+<div class="page" id="page-auth">
+  <div class="auth-page">
+    <h2>Welcome to SkillNest 🪴</h2>
+    <p>Sign in or create an account to connect with people in your college.</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-signin" onclick="switchAuthTab('signin')">Sign in</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="switchAuthTab('signup')">Sign up</button>
+    </div>
+    <div class="auth-error" id="auth-error"></div>
+    <div class="auth-success" id="auth-success"></div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="auth-email" placeholder="your@college.ac.in">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-input" id="auth-password" placeholder="Min 6 characters">
+    </div>
+    <button class="form-submit" id="auth-submit-btn" onclick="handleAuth()">Sign in</button>
+    <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:16px">
+      By signing up you agree this is for your college use only.
+    </p>
+  </div>
+</div>
+
+<!-- CREATE / EDIT PROFILE -->
+<div class="page" id="page-create-profile">
+  <div class="form-page">
+    <div class="form-header">
+      <h2>Build your profile 🪴</h2>
+      <p>Takes 2 minutes. Shows up to everyone in your college.</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Your name</label>
+      <input type="text" class="form-input" id="input-name" placeholder="What do people call you?">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Branch and year</label>
+      <div class="two-col">
+        <select class="form-input" id="input-branch">
+          <option value="">Select branch</option>
+          <option>CS / IT</option>
+          <option>ECE / EEE</option>
+          <option>Mechanical</option>
+          <option>Civil</option>
+          <option>Chemical</option>
+          <option>MBA / BBA</option>
+          <option>Other</option>
+        </select>
+        <select class="form-input" id="input-year">
+          <option value="">Year</option>
+          <option>1st Year</option>
+          <option>2nd Year</option>
+          <option>3rd Year</option>
+          <option>4th Year</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Pick your avatar</label>
+      <div class="avatar-grid">
+        <div class="avatar-option selected" data-avatar="🦊" onclick="selectAvatar(this)">🦊</div>
+        <div class="avatar-option" data-avatar="🐼" onclick="selectAvatar(this)">🐼</div>
+        <div class="avatar-option" data-avatar="🦁" onclick="selectAvatar(this)">🦁</div>
+        <div class="avatar-option" data-avatar="🐯" onclick="selectAvatar(this)">🐯</div>
+        <div class="avatar-option" data-avatar="🦋" onclick="selectAvatar(this)">🦋</div>
+        <div class="avatar-option" data-avatar="🐉" onclick="selectAvatar(this)">🐉</div>
+        <div class="avatar-option" data-avatar="🦅" onclick="selectAvatar(this)">🦅</div>
+        <div class="avatar-option" data-avatar="🦚" onclick="selectAvatar(this)">🦚</div>
+        <div class="avatar-option" data-avatar="🐙" onclick="selectAvatar(this)">🐙</div>
+        <div class="avatar-option" data-avatar="🦈" onclick="selectAvatar(this)">🦈</div>
+        <div class="avatar-option" data-avatar="🌙" onclick="selectAvatar(this)">🌙</div>
+        <div class="avatar-option" data-avatar="⚡" onclick="selectAvatar(this)">⚡</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Skills I have 💜</label>
+      <div class="skill-tags-input" id="have-tags-container" onclick="document.getElementById('have-input').focus()">
+        <input type="text" class="tag-input" id="have-input" placeholder="Type a skill, press Enter...">
+      </div>
+      <p class="tag-hint">Examples: React, Guitar, Figma, Cricket, DSA, Video Editing...</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Skills I want to learn 🌸</label>
+      <div class="skill-tags-input" id="want-tags-container" onclick="document.getElementById('want-input').focus()">
+        <input type="text" class="tag-input" id="want-input" placeholder="Type a skill, press Enter...">
+      </div>
+      <p class="tag-hint">What have you always wanted to learn but never had someone to teach you?</p>
+    </div>
+    <div class="form-group">
+      <label class="form-label">One line about you (optional)</label>
+      <input type="text" class="form-input" id="input-bio" placeholder="e.g. Into hackathons and bad jokes equally">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Contact — WhatsApp or email</label>
+      <input type="text" class="form-input" id="input-contact" placeholder="Only shown after both people connect">
+      <p class="tag-hint" style="margin-top:6px">Never shown publicly. Only revealed after a mutual connection.</p>
+    </div>
+    <button class="form-submit" id="profile-submit-btn" onclick="saveProfile()">Save profile 🪴</button>
+  </div>
+</div>
+
+<!-- DISCOVER -->
+<div class="page" id="page-discover">
+  <div class="discover-page">
+    <div class="discover-header">
+      <h2>Discover people 🔍</h2>
+      <div class="search-bar">
+        <span style="color:var(--muted)">🔎</span>
+        <input type="text" id="search-input" placeholder="Search by skill or name..." oninput="renderCards()">
+      </div>
+    </div>
+    <div class="filter-chips">
+      <button class="filter-chip active" onclick="setFilter('all',this)">All people</button>
+      <button class="filter-chip" onclick="setFilter('match',this)">Best matches</button>
+      <button class="filter-chip" onclick="setFilter('cs',this)">CS / IT</button>
+      <button class="filter-chip" onclick="setFilter('ece',this)">ECE / EEE</button>
+      <button class="filter-chip" onclick="setFilter('other',this)">Other branches</button>
+    </div>
+    <div class="profiles-grid" id="profiles-grid">
+      <div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--muted)">Loading profiles...</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONNECTIONS -->
+<div class="page" id="page-connections">
+  <div class="connections-page">
+    <h2>Connections</h2>
+    <div id="connections-content"></div>
+  </div>
+</div>
+
+<!-- MY PROFILE -->
+<div class="page" id="page-profile-view">
+  <div class="my-profile" id="my-profile-content"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- JS files loaded at bottom so HTML loads first -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/discover.js"></script>
+<script src="js/connections.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

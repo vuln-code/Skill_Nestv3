@@ -99,3 +99,46 @@ function clearAuthMessages() {
   document.getElementById('auth-error').style.display = 'none';
   document.getElementById('auth-success').style.display = 'none';
 }
+
+function showForgotPassword() {
+  document.getElementById('forgot-error').style.display  = 'none';
+  document.getElementById('forgot-success').style.display = 'none';
+  document.getElementById('forgot-email').value = '';
+  showPage('forgot');
+}
+
+async function handleForgotPassword() {
+  const email = document.getElementById('forgot-email').value.trim();
+  const btn   = document.getElementById('forgot-btn');
+  const err   = document.getElementById('forgot-error');
+  const succ  = document.getElementById('forgot-success');
+
+  err.style.display  = 'none';
+  succ.style.display = 'none';
+
+  if (!email) {
+    err.textContent   = 'Please enter your email.';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.disabled    = true;
+  btn.textContent = 'Sending...';
+
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://skillnestv3.vercel.app'
+  });
+
+  if (error) {
+    err.textContent   = error.message;
+    err.style.display = 'block';
+    btn.disabled      = false;
+    btn.textContent   = 'Send reset link';
+    return;
+  }
+
+  succ.textContent   = '✅ Reset link sent! Check your email inbox.';
+  succ.style.display = 'block';
+  btn.disabled       = false;
+  btn.textContent    = 'Send reset link';
+}

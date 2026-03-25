@@ -100,6 +100,54 @@ function clearAuthMessages() {
   document.getElementById('auth-success').style.display = 'none';
 }
 
+async function checkPasswordReset() {
+  const hash = window.location.hash;
+  if (hash && hash.includes('type=recovery')) {
+    showPage('reset-password');
+  }
+}
+
+async function handlePasswordReset() {
+  const password = document.getElementById('reset-password-input').value;
+  const confirm  = document.getElementById('reset-password-confirm').value;
+  const btn      = document.getElementById('reset-btn');
+  const err      = document.getElementById('reset-error');
+  const succ     = document.getElementById('reset-success');
+
+  err.style.display  = 'none';
+  succ.style.display = 'none';
+
+  if (password.length < 6) {
+    err.textContent   = 'Password must be at least 6 characters.';
+    err.style.display = 'block';
+    return;
+  }
+
+  if (password !== confirm) {
+    err.textContent   = 'Passwords do not match.';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.disabled    = true;
+  btn.textContent = 'Updating...';
+
+  const { error } = await sb.auth.updateUser({ password });
+
+  if (error) {
+    err.textContent   = error.message;
+    err.style.display = 'block';
+    btn.disabled      = false;
+    btn.textContent   = 'Update password';
+    return;
+  }
+
+  succ.textContent   = '✅ Password updated! Taking you to sign in...';
+  succ.style.display = 'block';
+  btn.disabled       = false;
+  setTimeout(() => showPage('auth'), 2000);
+}
+
 function showForgotPassword() {
   document.getElementById('forgot-error').style.display  = 'none';
   document.getElementById('forgot-success').style.display = 'none';
@@ -142,3 +190,6 @@ async function handleForgotPassword() {
   btn.disabled       = false;
   btn.textContent    = 'Send reset link';
 }
+initAuth();
+updateStats();
+checkPasswordReset();

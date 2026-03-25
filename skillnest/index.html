@@ -60,10 +60,13 @@
       <label class="form-label">Password</label>
       <input type="password" class="form-input" id="auth-password" placeholder="Min 6 characters">
     </div>
-    <button class="form-submit" id="auth-submit-btn" onclick="handleAuth()">Sign in</button>
-    <p style="text-align:center;color:var(--muted);font-size:13px;margin-top:16px">
-      By signing up you agree this is for your college use only.
-    </p>
+  <button class="form-submit" id="auth-submit-btn" onclick="handleAuth()">Sign in</button>
+<p onclick="showForgotPassword()" style="text-align:center;color:var(--accent);font-size:13px;margin-top:12px;cursor:pointer">
+  Forgot password?
+</p>
+<p style="text-align:center;color:var(--muted);font-size:13px;margin-top:8px">
+  By signing up you agree this is for your college use only.
+</p>
   </div>
 </div>
 
@@ -145,6 +148,40 @@
   </div>
 </div>
 
+<div class="page" id="page-reset-password">
+  <div class="auth-page">
+    <h2>Set new password 🔑</h2>
+    <p>Enter your new password below.</p>
+    <div class="auth-error" id="reset-error"></div>
+    <div class="auth-success" id="reset-success"></div>
+    <div class="form-group">
+      <label class="form-label">New password</label>
+      <input type="password" class="form-input" id="reset-password-input" placeholder="Min 6 characters">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Confirm password</label>
+      <input type="password" class="form-input" id="reset-password-confirm" placeholder="Same password again">
+    </div>
+    <button class="form-submit" id="reset-btn" onclick="handlePasswordReset()">Update password</button>
+  </div>
+</div>
+
+<div class="page" id="page-forgot">
+  <div class="auth-page">
+    <h2>Reset password 🔑</h2>
+    <p>Enter your college email and we'll send you a reset link.</p>
+    <div class="auth-error" id="forgot-error"></div>
+    <div class="auth-success" id="forgot-success"></div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" id="forgot-email" placeholder="your@college.ac.in">
+    </div>
+    <button class="form-submit" id="forgot-btn" onclick="handleForgotPassword()">Send reset link</button>
+    <p onclick="showPage('auth')" style="text-align:center;color:var(--accent);font-size:13px;margin-top:16px;cursor:pointer">
+      Back to sign in
+    </p>
+  </div>
+</div>
 <div class="page" id="page-discover">
   <div class="discover-page">
     <div class="discover-header">

@@ -2,11 +2,13 @@
 // This is the main entry point — controls page navigation
 
 function showPage(page) {
+  if (page === 'leaderboard') loadLeaderboard();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
 
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   const tabMap = {
+    'leaderboard': 'tab-leaderboard',
     'landing':        'tab-home',
     'discover':       'tab-discover',
     'connections':    'tab-connections',
